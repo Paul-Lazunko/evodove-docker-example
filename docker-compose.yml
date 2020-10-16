@@ -1,0 +1,20 @@
+version: '3.7'
+
+networks:
+  evodove-ntw:
+    driver: bridge
+services:
+  evodove:
+    container_name: evodove
+    hostname: evodove
+    domainname: evodove
+    image: pashaman/evodove:latest
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - 45678:45678
+    networks:
+      - evodove-ntw
+    volumes:
+      - ./data:/app/data
